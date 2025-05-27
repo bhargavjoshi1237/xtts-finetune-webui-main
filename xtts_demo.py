@@ -411,7 +411,7 @@ if __name__ == "__main__":
                     print("Downloading custom model from URL...")
                     custom_model = download_file(custom_model, "custom_model.pth")
                     if not custom_model:
-                        return "Failed to download the custom model.", "", "", "", ""
+                        return "Failed to download the custom model.", "", "", "", "", ""
             
                 run_dir = Path(output_path) / "run"
             
@@ -438,8 +438,8 @@ if __name__ == "__main__":
                     max_audio_length = int(max_audio_length * 22050)
                     # speaker_xtts_path, config_path, original_xtts_checkpoint, vocab_file, exp_path, speaker_wav = train_gpt(custom_model, version, language, num_epochs, batch_size, grad_acumm, train_csv, eval_csv, output_path=output_path, max_audio_length=max_audio_length)
                     print("Skipping saving best_model: Model saving is disabled for Kaggle to avoid exceeding storage limits.")
-                    # Commented out to avoid saving model checkpoints
-                    return "Model training skipped: Model saving is disabled for Kaggle.", "", "", "", ""
+                    # Only skip saving best_model, but return empty string for its path, and keep other outputs as empty strings for compatibility
+                    return "Model training skipped: Model saving is disabled for Kaggle.", "", "", "", "", ""
                 except:
                     traceback.print_exc()
                     error = traceback.format_exc()
